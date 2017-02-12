@@ -17,7 +17,7 @@ public class RenderSheepKing extends RenderLiving<EntitySheepKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/sheep/sheep_fur.png");
 
-    public RenderSheepKing(RenderManager renderManager){
+    public RenderSheepKing(RenderManager renderManager) {
         super(renderManager, new ModelSheepKing(), 1.0f);
     }
 

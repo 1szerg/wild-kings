@@ -17,6 +17,7 @@ public class WildKingsCrafting {
     }
 
     private static void registerRecipes() {
+        Utils.log("Registering recipes");
         GameRegistry.addShapelessRecipe(new ItemStack(WildKingsItems.gear),
                 WildKingsItems.gearBroken,
                 WildKingsItems.gearBroken,

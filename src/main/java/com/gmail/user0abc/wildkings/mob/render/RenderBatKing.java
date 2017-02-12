@@ -1,9 +1,7 @@
 package com.gmail.user0abc.wildkings.mob.render;
 
-import com.gmail.user0abc.wildkings.WildKingsMod;
 import com.gmail.user0abc.wildkings.mob.EntityBatKing;
 import com.gmail.user0abc.wildkings.mob.model.ModelBatKing;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -19,7 +17,7 @@ public class RenderBatKing extends RenderLiving<EntityBatKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/bat.png");
 
-    public RenderBatKing(RenderManager renderManager){
+    public RenderBatKing(RenderManager renderManager) {
         super(renderManager, new ModelBatKing(), 1.0f);
     }
 

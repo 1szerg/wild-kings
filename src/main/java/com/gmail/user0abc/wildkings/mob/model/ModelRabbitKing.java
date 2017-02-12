@@ -1,16 +1,15 @@
 package com.gmail.user0abc.wildkings.mob.model;
 
-import net.minecraft.client.model.ModelPig;
 import net.minecraft.client.model.ModelRabbit;
 import net.minecraft.entity.Entity;
 
 /**
  * @author Sergii Ivanov
  */
-public class ModelRabbitKing extends ModelRabbit{
+public class ModelRabbitKing extends ModelRabbit {
 
     @Override
     public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale*2);
+        super.render(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale * 2);
     }
 }

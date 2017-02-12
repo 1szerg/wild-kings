@@ -13,11 +13,11 @@ import javax.annotation.Nullable;
 /**
  * @author Sergii Ivanov
  */
-public class RenderHorseKing  extends RenderLiving<EntityHorseKing> {
+public class RenderHorseKing extends RenderLiving<EntityHorseKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/horse/horse_black.png");
 
-    public RenderHorseKing(RenderManager renderManager){
+    public RenderHorseKing(RenderManager renderManager) {
         super(renderManager, new ModelHorseKing(), 1.0f);
     }
 

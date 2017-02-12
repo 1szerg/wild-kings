@@ -1,8 +1,6 @@
 package com.gmail.user0abc.wildkings.mob.render;
 
-import com.gmail.user0abc.wildkings.mob.EntityPigKing;
 import com.gmail.user0abc.wildkings.mob.EntityRabbitKing;
-import com.gmail.user0abc.wildkings.mob.model.ModelPigKing;
 import com.gmail.user0abc.wildkings.mob.model.ModelRabbitKing;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -19,7 +17,7 @@ public class RenderRabbitKing extends RenderLiving<EntityRabbitKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/rabbit/black.png");
 
-    public RenderRabbitKing(RenderManager renderManager){
+    public RenderRabbitKing(RenderManager renderManager) {
         super(renderManager, new ModelRabbitKing(), 1.0f);
     }
 

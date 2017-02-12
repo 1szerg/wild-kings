@@ -1,10 +1,12 @@
 package com.gmail.user0abc.wildkings.block;
 
 import com.gmail.user0abc.wildkings.WildKingsMod;
+import com.gmail.user0abc.wildkings.misc.Utils;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -21,25 +23,19 @@ public class WildKingsBlocks {
 
     public static void preInit() {
         autoWorkbench = new BlockAutoWorkbench(null);
-        breaker = new BlockBreaker(null);
+        breaker = new BlockBreaker(false);
         feeder = new BlockFeeder(null);
         fisher = new BlockFisher(null);
-        planter = new BlockPlanter(null);
+        planter = new BlockPlanter(false);
         registerBlocks();
     }
 
-    public static void registerRenders(){
+    public static void registerRenders() {
         registerRender(autoWorkbench, BlockAutoWorkbench.MODEL_NAME);
         registerRender(breaker, BlockBreaker.MODEL_NAME);
-        registerRender(autoWorkbench, BlockFeeder.MODEL_NAME);
-        registerRender(autoWorkbench, BlockFisher.MODEL_NAME);
-        registerRender(autoWorkbench, BlockPlanter.MODEL_NAME);
-    }
-
-    private static void registerRender(Block block, String name) {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0,
-                new ModelResourceLocation(WildKingsMod.MODID, name)
-        );
+        registerRender(feeder, BlockFeeder.MODEL_NAME);
+        registerRender(fisher, BlockFisher.MODEL_NAME);
+        registerRender(planter, BlockPlanter.MODEL_NAME);
     }
 
     private static void registerBlocks() {
@@ -50,7 +46,16 @@ public class WildKingsBlocks {
         registerBlock(planter, BlockPlanter.NAME);
     }
 
-    private static void registerBlock(Block block, String name){
-        GameRegistry.register(block, new ResourceLocation(WildKingsMod.MODID, name));
+    private static void registerBlock(Block block, String name) {
+        ResourceLocation rl = new ResourceLocation(WildKingsMod.MODID, name);
+        Utils.log("Registering block " + name + " at " + rl);
+        GameRegistry.register(block, rl);
+        GameRegistry.register(new ItemBlock(block), rl);
+    }
+
+    private static void registerRender(Block block, String name) {
+        ModelResourceLocation mrl = new ModelResourceLocation(WildKingsMod.MODID + ":" + name, "inventory");
+        Utils.log("Registering block render for " + name + " as " + mrl);
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, mrl);
     }
 }

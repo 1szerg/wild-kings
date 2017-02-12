@@ -1,5 +1,6 @@
 package com.gmail.user0abc.wildkings.mob;
 
+import com.gmail.user0abc.wildkings.misc.Utils;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.world.World;
 
@@ -13,5 +14,18 @@ public class EntityHorseKing extends EntityMob {
 
     public EntityHorseKing(World worldIn) {
         super(worldIn);
+        setSize(0.75f, 0.75f);
+    }
+
+    @Override
+    protected void initEntityAI() {
+        super.initEntityAI();
+        Utils.typicalMobAi(this);
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        Utils.typicalStats(this);
     }
 }

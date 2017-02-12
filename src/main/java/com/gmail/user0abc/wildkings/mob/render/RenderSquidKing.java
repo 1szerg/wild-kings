@@ -17,7 +17,7 @@ public class RenderSquidKing extends RenderLiving<EntitySquidKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/squid.png");
 
-    public RenderSquidKing(RenderManager renderManager){
+    public RenderSquidKing(RenderManager renderManager) {
         super(renderManager, new ModelSquidKing(), 1.0f);
     }
 

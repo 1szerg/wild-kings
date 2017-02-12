@@ -1,6 +1,7 @@
 package com.gmail.user0abc.wildkings.mob;
 
 import com.gmail.user0abc.wildkings.WildKingsMod;
+import com.gmail.user0abc.wildkings.misc.Utils;
 import com.gmail.user0abc.wildkings.mob.render.*;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.monster.EntityMob;
@@ -29,6 +30,7 @@ public class WildKingsMobs {
     }
 
     private static void registerMob(int id, Class<? extends EntityMob> entityClass, String entityName, int eggPrimaryColor, int eggSecondaryColor) {
+        Utils.log("Registering mob " + entityClass.getName());
         ResourceLocation rl = new ResourceLocation(WildKingsMod.MODID, entityName);
         EntityRegistry.registerModEntity(rl, entityClass, entityName, id, WildKingsMod.instance, 64, 1, true);
         EntityList.ENTITY_EGGS.put(rl, new EntityList.EntityEggInfo(rl, eggPrimaryColor, eggSecondaryColor));
@@ -36,6 +38,7 @@ public class WildKingsMobs {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+        Utils.log("Registering mobs renders");
         RenderingRegistry.registerEntityRenderingHandler(EntityBatKing.class, RenderBatKing.getRenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityChickenKing.class, RenderChickenKing.getRenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityCowKing.class, RenderCowKing.getRenderFactory());

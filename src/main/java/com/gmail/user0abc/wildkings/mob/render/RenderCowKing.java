@@ -1,7 +1,6 @@
 package com.gmail.user0abc.wildkings.mob.render;
 
 import com.gmail.user0abc.wildkings.mob.EntityCowKing;
-import com.gmail.user0abc.wildkings.mob.EntityCowKing;
 import com.gmail.user0abc.wildkings.mob.model.ModelCowKing;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -18,7 +17,7 @@ public class RenderCowKing extends RenderLiving<EntityCowKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/Cow.png");
 
-    public RenderCowKing(RenderManager renderManager){
+    public RenderCowKing(RenderManager renderManager) {
         super(renderManager, new ModelCowKing(), 1.0f);
     }
 

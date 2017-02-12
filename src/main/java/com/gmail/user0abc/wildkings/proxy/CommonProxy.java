@@ -2,14 +2,13 @@ package com.gmail.user0abc.wildkings.proxy;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**
  * @author Sergii Ivanov
  */
 public class CommonProxy {
 
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLInitializationEvent event) {
         System.out.println("Server: Pre init " + System.currentTimeMillis());
     }
 

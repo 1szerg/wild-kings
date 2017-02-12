@@ -1,8 +1,6 @@
 package com.gmail.user0abc.wildkings.mob.render;
 
-import com.gmail.user0abc.wildkings.mob.EntityBatKing;
 import com.gmail.user0abc.wildkings.mob.EntityChickenKing;
-import com.gmail.user0abc.wildkings.mob.model.ModelBatKing;
 import com.gmail.user0abc.wildkings.mob.model.ModelChickenKing;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -19,7 +17,7 @@ public class RenderChickenKing extends RenderLiving<EntityChickenKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/chicken.png");
 
-    public RenderChickenKing(RenderManager renderManager){
+    public RenderChickenKing(RenderManager renderManager) {
         super(renderManager, new ModelChickenKing(), 1.0f);
     }
 

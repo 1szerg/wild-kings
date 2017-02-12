@@ -7,7 +7,6 @@ import com.gmail.user0abc.wildkings.mob.WildKingsMobs;
 import com.gmail.user0abc.wildkings.proxy.CommonProxy;
 import com.gmail.user0abc.wildkings.tab.WildKingsTab;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -33,14 +32,12 @@ public class WildKingsMod {
         WildKingsBlocks.preInit();
         WildKingsMobs.preInit();
         WildKingsCrafting.preInit();
-        proxy.preInit(event);
 
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        // some example code
-        System.out.println("DIRT BLOCK >> " + Blocks.DIRT.getUnlocalizedName());
+        proxy.preInit(event);
     }
 
 }

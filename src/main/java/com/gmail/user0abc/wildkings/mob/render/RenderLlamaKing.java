@@ -17,7 +17,7 @@ public class RenderLlamaKing extends RenderLiving<EntityLlamaKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/llama/llama.png");
 
-    public RenderLlamaKing(RenderManager renderManager){
+    public RenderLlamaKing(RenderManager renderManager) {
         super(renderManager, new ModelLlamaKing(1f), 1.0f);
     }
 

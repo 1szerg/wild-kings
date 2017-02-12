@@ -1,8 +1,6 @@
 package com.gmail.user0abc.wildkings.mob.render;
 
-import com.gmail.user0abc.wildkings.mob.EntityOcelotKing;
 import com.gmail.user0abc.wildkings.mob.EntityPigKing;
-import com.gmail.user0abc.wildkings.mob.model.ModelOcelotKing;
 import com.gmail.user0abc.wildkings.mob.model.ModelPigKing;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -19,7 +17,7 @@ public class RenderPigKing extends RenderLiving<EntityPigKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/pig/pig.png");
 
-    public RenderPigKing(RenderManager renderManager){
+    public RenderPigKing(RenderManager renderManager) {
         super(renderManager, new ModelPigKing(), 1.0f);
     }
 

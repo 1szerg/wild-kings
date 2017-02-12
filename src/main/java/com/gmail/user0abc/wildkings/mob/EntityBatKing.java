@@ -1,9 +1,9 @@
 package com.gmail.user0abc.wildkings.mob;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -20,7 +20,7 @@ public class EntityBatKing extends EntityMob {
 
     public EntityBatKing(World worldIn) {
         super(worldIn);
-        setSize(0.5f,0.5f);
+        setSize(0.5f, 0.5f);
     }
 
     @Override
@@ -55,10 +55,16 @@ public class EntityBatKing extends EntityMob {
 
     @Override
     public boolean getCanSpawnHere() {
-        if(super.getCanSpawnHere()){
+        if (super.getCanSpawnHere()) {
             BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
             return world.getBlockState(blockpos).getBlock().equals(Blocks.AIR);
         }
         return false;
     }
+
+    @Override
+    protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos) {
+        // does not fall
+    }
+
 }

@@ -1,8 +1,6 @@
 package com.gmail.user0abc.wildkings.mob.render;
 
-import com.gmail.user0abc.wildkings.mob.EntityLlamaKing;
 import com.gmail.user0abc.wildkings.mob.EntityOcelotKing;
-import com.gmail.user0abc.wildkings.mob.model.ModelLlamaKing;
 import com.gmail.user0abc.wildkings.mob.model.ModelOcelotKing;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -19,7 +17,7 @@ public class RenderOcelotKing extends RenderLiving<EntityOcelotKing> {
 
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/cat/red.png");
 
-    public RenderOcelotKing(RenderManager renderManager){
+    public RenderOcelotKing(RenderManager renderManager) {
         super(renderManager, new ModelOcelotKing(), 1.0f);
     }
 
