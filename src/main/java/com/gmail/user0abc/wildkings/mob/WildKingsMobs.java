@@ -38,7 +38,7 @@ public class WildKingsMobs {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
-        Utils.log("Registering mobs renders");
+        Utils.log("Registering mobs\' renders");
         RenderingRegistry.registerEntityRenderingHandler(EntityBatKing.class, RenderBatKing.getRenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityChickenKing.class, RenderChickenKing.getRenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityCowKing.class, RenderCowKing.getRenderFactory());

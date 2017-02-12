@@ -2,10 +2,13 @@ package com.gmail.user0abc.wildkings.mob.model;
 
 import net.minecraft.client.model.ModelBat;
 import net.minecraft.entity.Entity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author Sergii Ivanov
  */
+@SideOnly(Side.CLIENT)
 public class ModelBatKing extends ModelBat {
 
     @Override
