@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "active=true,facing=up": { "model": "wildkings:planter_block", "x": 270 },
+        "active=true,facing=down": { "model": "wildkings:planter_block", "x": 90 },
+        "active=true,facing=north": { "model": "wildkings:planter_block" },
+        "active=true,facing=south": { "model": "wildkings:planter_block", "y": 180 },
+        "active=true,facing=west":  { "model": "wildkings:planter_block", "y": 270 },
+        "active=true,facing=east":  { "model": "wildkings:planter_block", "y": 90 },
+        "active=false,facing=up": { "model": "wildkings:planter_block", "x": 270 },
+        "active=false,facing=down": { "model": "wildkings:planter_block", "x": 90 },
+        "active=false,facing=north": { "model": "wildkings:planter_block" },
+        "active=false,facing=south": { "model": "wildkings:planter_block", "y": 180 },
+        "active=false,facing=west":  { "model": "wildkings:planter_block", "y": 270 },
+        "active=false,facing=east":  { "model": "wildkings:planter_block", "y": 90 }
+    }
+}

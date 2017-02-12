@@ -1,0 +1,6 @@
+{
+  "parent": "wildkings:block/breaker_block",
+  "textures": {
+    "front": "wildkings:blocks/breaker_front_on"
+  }
+}

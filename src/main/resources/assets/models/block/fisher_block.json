@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "wildkings:blocks/fisher_side",
+    "down": "wildkings:blocks/wood_side",
+    "up": "wildkings:blocks/wood_side",
+    "north": "wildkings:blocks/fisher_side",
+    "east": "wildkings:blocks/fisher_side",
+    "south": "wildkings:blocks/fisher_side",
+    "west": "wildkings:blocks/fisher_side"
+  }
+}

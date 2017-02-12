@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "wildkings:block/auto_workbench_block" }
+    }
+}

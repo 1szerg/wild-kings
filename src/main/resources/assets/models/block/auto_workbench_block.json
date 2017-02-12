@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "wildkings:blocks/auto_workbench",
+    "down": "wildkings:blocks/wood_side",
+    "up": "wildkings:blocks/auto_workbench",
+    "north": "wildkings:blocks/wood_side",
+    "east": "wildkings:blocks/wood_side",
+    "south": "wildkings:blocks/wood_side",
+    "west": "wildkings:blocks/wood_side"
+  }
+}

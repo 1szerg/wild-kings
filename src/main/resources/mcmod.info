@@ -1,0 +1,16 @@
+[
+{
+  "modid": "wildkings",
+  "name": "Wild Kings",
+  "description": "Adds a king mobs for all peaceful mobs like Sheep King, Cow King, Ocelot King, etc. Also adds new items and machine blocks.",
+  "version": "${modversion}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["user0abc@gmail.com"],
+  "credits": "The Forge and FML guys, for making mod example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
