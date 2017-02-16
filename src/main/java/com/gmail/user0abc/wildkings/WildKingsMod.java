@@ -32,12 +32,12 @@ public class WildKingsMod {
         WildKingsBlocks.preInit();
         WildKingsMobs.preInit();
         WildKingsCrafting.preInit();
-
+        proxy.preInit(event);
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        proxy.preInit(event);
+        proxy.init(event);
     }
 
 }
