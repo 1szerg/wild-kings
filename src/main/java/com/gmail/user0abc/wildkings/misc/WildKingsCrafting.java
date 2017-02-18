@@ -19,10 +19,18 @@ public class WildKingsCrafting {
     private static void registerRecipes() {
         Utils.log("Registering recipes");
         GameRegistry.addShapelessRecipe(new ItemStack(WildKingsItems.gear),
-                WildKingsItems.gearBroken,
-                WildKingsItems.gearBroken,
-                WildKingsItems.gearBroken,
+                WildKingsItems.kingsBlood,
+                Items.GOLD_INGOT,
+                Items.IRON_INGOT,
+                Items.IRON_INGOT,
                 Items.IRON_INGOT);
+
+        GameRegistry.addRecipe(new ItemStack(WildKingsItems.gear, 1),
+                "RIR",
+                "IBI",
+                "RIR",
+                'I', Items.IRON_INGOT, 'B', WildKingsItems.kingsBlood, 'R', Items.REDSTONE);
+
         GameRegistry.addShapedRecipe(new ItemStack(WildKingsBlocks.autoWorkbench),
                 "ISI",
                 "SGS",

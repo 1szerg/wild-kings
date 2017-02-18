@@ -6,11 +6,11 @@ import net.minecraft.item.Item;
 /**
  * @author Sergii Ivanov
  */
-public class ItemGearBroken extends Item {
-    public static final String MODEL = "gear_broken";
-    public static final String NAME = "gear_broken";
+public class ItemKingsBlood extends Item {
+    public static final String MODEL = "kings_blood";
+    public static final String NAME = "kings_blood";
 
-    public ItemGearBroken() {
+    public ItemKingsBlood() {
         setCreativeTab(WildKingsMod.wkCreativeTab);
         setUnlocalizedName(NAME);
     }

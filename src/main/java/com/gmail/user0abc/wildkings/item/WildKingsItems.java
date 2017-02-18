@@ -14,13 +14,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class WildKingsItems {
 
     public static Item gear;
-    public static Item gearBroken;
+    public static Item kingsBlood;
 
     public static void preInit() {
         gear = new ItemGear();
-        gearBroken = new ItemGearBroken();
+        kingsBlood = new ItemKingsBlood();
         register(gear, ItemGear.NAME);
-        register(gearBroken, ItemGearBroken.NAME);
+        register(kingsBlood, ItemKingsBlood.NAME);
     }
 
     private static void register(Item gear, String name) {
@@ -29,7 +29,7 @@ public class WildKingsItems {
 
     public static void registerRenders() {
         registerRender(gear, ItemGear.MODEL);
-        registerRender(gearBroken, ItemGearBroken.MODEL);
+        registerRender(kingsBlood, ItemKingsBlood.MODEL);
     }
 
     private static void registerRender(Item item, String model) {
