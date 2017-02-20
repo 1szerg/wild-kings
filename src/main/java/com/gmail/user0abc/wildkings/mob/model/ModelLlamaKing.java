@@ -1,51 +1,71 @@
 package com.gmail.user0abc.wildkings.mob.model;
 
-import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author Sergii Ivanov
  */
-public class ModelLlamaKing extends ModelQuadruped {
+@SideOnly(Side.CLIENT)
+public class ModelLlamaKing extends ModelQuadrupedKing {
     private final ModelRenderer chest1;
     private final ModelRenderer chest2;
 
-    public ModelLlamaKing(float p_i47226_1_) {
-        super(15, p_i47226_1_);
+    public ModelLlamaKing(int height, float scale) {
+        super(height, scale);
+        this.head.addBox(-4.0F, -4.0F, -8.0F, 8, 8, 8, scale);
+        this.head.setRotationPoint(0.0F, (float) (18 - height), -6.0F);
+        this.body = new ModelRenderer(this, 28, 8);
+        this.body.addBox(-5.0F, -10.0F, -7.0F, 10, 16, 8, scale);
+        this.body.setRotationPoint(0.0F, (float) (17 - height), 2.0F);
+        this.leg1 = new ModelRenderer(this, 0, 16);
+        this.leg1.addBox(-2.0F, 0.0F, -2.0F, 4, height, 4, scale);
+        this.leg1.setRotationPoint(-3.0F, (float) (24 - height), 7.0F);
+        this.leg2 = new ModelRenderer(this, 0, 16);
+        this.leg2.addBox(-2.0F, 0.0F, -2.0F, 4, height, 4, scale);
+        this.leg2.setRotationPoint(3.0F, (float) (24 - height), 7.0F);
+        this.leg3 = new ModelRenderer(this, 0, 16);
+        this.leg3.addBox(-2.0F, 0.0F, -2.0F, 4, height, 4, scale);
+        this.leg3.setRotationPoint(-3.0F, (float) (24 - height), -5.0F);
+        this.leg4 = new ModelRenderer(this, 0, 16);
+        this.leg4.addBox(-2.0F, 0.0F, -2.0F, 4, height, 4, scale);
+        this.leg4.setRotationPoint(3.0F, (float) (24 - height), -5.0F);
+
         this.textureWidth = 128;
         this.textureHeight = 64;
         this.head = new ModelRenderer(this, 0, 0);
-        this.head.addBox(-2.0F, -14.0F, -10.0F, 4, 4, 9, p_i47226_1_);
+        this.head.addBox(-2.0F, -14.0F, -10.0F, 4, 4, 9, scale);
         this.head.setRotationPoint(0.0F, 7.0F, -6.0F);
-        this.head.setTextureOffset(0, 14).addBox(-4.0F, -16.0F, -6.0F, 8, 18, 6, p_i47226_1_);
-        this.head.setTextureOffset(17, 0).addBox(-4.0F, -19.0F, -4.0F, 3, 3, 2, p_i47226_1_);
-        this.head.setTextureOffset(17, 0).addBox(1.0F, -19.0F, -4.0F, 3, 3, 2, p_i47226_1_);
+        this.head.setTextureOffset(0, 14).addBox(-4.0F, -16.0F, -6.0F, 8, 18, 6, scale);
+        this.head.setTextureOffset(17, 0).addBox(-4.0F, -19.0F, -4.0F, 3, 3, 2, scale);
+        this.head.setTextureOffset(17, 0).addBox(1.0F, -19.0F, -4.0F, 3, 3, 2, scale);
         this.body = new ModelRenderer(this, 29, 0);
-        this.body.addBox(-6.0F, -10.0F, -7.0F, 12, 18, 10, p_i47226_1_);
+        this.body.addBox(-6.0F, -10.0F, -7.0F, 12, 18, 10, scale);
         this.body.setRotationPoint(0.0F, 5.0F, 2.0F);
         this.chest1 = new ModelRenderer(this, 45, 28);
-        this.chest1.addBox(-3.0F, 0.0F, 0.0F, 8, 8, 3, p_i47226_1_);
+        this.chest1.addBox(-3.0F, 0.0F, 0.0F, 8, 8, 3, scale);
         this.chest1.setRotationPoint(-8.5F, 3.0F, 3.0F);
-        this.chest1.rotateAngleY = ((float)Math.PI / 2F);
+        this.chest1.rotateAngleY = ((float) Math.PI / 2F);
         this.chest2 = new ModelRenderer(this, 45, 41);
-        this.chest2.addBox(-3.0F, 0.0F, 0.0F, 8, 8, 3, p_i47226_1_);
+        this.chest2.addBox(-3.0F, 0.0F, 0.0F, 8, 8, 3, scale);
         this.chest2.setRotationPoint(5.5F, 3.0F, 3.0F);
-        this.chest2.rotateAngleY = ((float)Math.PI / 2F);
+        this.chest2.rotateAngleY = ((float) Math.PI / 2F);
         int i = 4;
         int j = 14;
         this.leg1 = new ModelRenderer(this, 29, 29);
-        this.leg1.addBox(-2.0F, 0.0F, -2.0F, 4, 14, 4, p_i47226_1_);
+        this.leg1.addBox(-2.0F, 0.0F, -2.0F, 4, 14, 4, scale);
         this.leg1.setRotationPoint(-2.5F, 10.0F, 6.0F);
         this.leg2 = new ModelRenderer(this, 29, 29);
-        this.leg2.addBox(-2.0F, 0.0F, -2.0F, 4, 14, 4, p_i47226_1_);
+        this.leg2.addBox(-2.0F, 0.0F, -2.0F, 4, 14, 4, scale);
         this.leg2.setRotationPoint(2.5F, 10.0F, 6.0F);
         this.leg3 = new ModelRenderer(this, 29, 29);
-        this.leg3.addBox(-2.0F, 0.0F, -2.0F, 4, 14, 4, p_i47226_1_);
+        this.leg3.addBox(-2.0F, 0.0F, -2.0F, 4, 14, 4, scale);
         this.leg3.setRotationPoint(-2.5F, 10.0F, -4.0F);
         this.leg4 = new ModelRenderer(this, 29, 29);
-        this.leg4.addBox(-2.0F, 0.0F, -2.0F, 4, 14, 4, p_i47226_1_);
+        this.leg4.addBox(-2.0F, 0.0F, -2.0F, 4, 14, 4, scale);
         this.leg4.setRotationPoint(2.5F, 10.0F, -4.0F);
         --this.leg1.rotationPointX;
         ++this.leg2.rotationPointX;
@@ -55,57 +75,35 @@ public class ModelLlamaKing extends ModelQuadruped {
         ++this.leg4.rotationPointX;
         --this.leg3.rotationPointZ;
         --this.leg4.rotationPointZ;
-        this.childZOffset += 2.0F;
     }
 
     @Override
-    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
-    {
+    public float getHeightFix() {
+        return -12f;
+    }
+
+    @Override
+    public float getSizeScale() {
+        return 2f;
+    }
+
+    @Override
+    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+
+        float renderScale = scale * getSizeScale();
         //AbstractChestHorse abstractchesthorse = (AbstractChestHorse)entityIn;
         boolean flag = false;//!abstractchesthorse.isChild() && abstractchesthorse.hasChest();
-        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
+        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, renderScale, entityIn);
 
-        if (this.isChild)
-        {
-            float f = 2.0F;
-            GlStateManager.pushMatrix();
-            GlStateManager.translate(0.0F, this.childYOffset * scale, this.childZOffset * scale);
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            float f1 = 0.7F;
-            GlStateManager.scale(0.71428573F, 0.64935064F, 0.7936508F);
-            GlStateManager.translate(0.0F, 21.0F * scale, 0.22F);
-            this.head.render(scale);
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            float f2 = 1.1F;
-            GlStateManager.scale(0.625F, 0.45454544F, 0.45454544F);
-            GlStateManager.translate(0.0F, 33.0F * scale, 0.0F);
-            this.body.render(scale);
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            GlStateManager.scale(0.45454544F, 0.41322312F, 0.45454544F);
-            GlStateManager.translate(0.0F, 33.0F * scale, 0.0F);
-            this.leg1.render(scale);
-            this.leg2.render(scale);
-            this.leg3.render(scale);
-            this.leg4.render(scale);
-            GlStateManager.popMatrix();
-        }
-        else
-        {
-            this.head.render(scale);
-            this.body.render(scale);
-            this.leg1.render(scale);
-            this.leg2.render(scale);
-            this.leg3.render(scale);
-            this.leg4.render(scale);
-        }
-
-        if (flag)
-        {
-            this.chest1.render(scale);
-            this.chest2.render(scale);
-        }
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0.0F, getHeightFix() * renderScale, 0f);
+        this.head.render(renderScale);
+        this.body.render(renderScale);
+        this.leg1.render(renderScale);
+        this.leg2.render(renderScale);
+        this.leg3.render(renderScale);
+        this.leg4.render(renderScale);
+        GlStateManager.popMatrix();
     }
+
 }

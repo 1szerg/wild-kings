@@ -15,10 +15,11 @@ import javax.annotation.Nullable;
  */
 public class RenderCowKing extends RenderLiving<EntityCowKing> {
 
-    private static final ResourceLocation texture = new ResourceLocation("textures/entity/Cow.png");
+    private static final ResourceLocation texture = new ResourceLocation("textures/entity/cow/cow.png");
 
     public RenderCowKing(RenderManager renderManager) {
-        super(renderManager, new ModelCowKing(), 1.0f);
+        super(renderManager, new ModelCowKing(2,1f),1f);
+
     }
 
     public static IRenderFactory<EntityCowKing> getRenderFactory() {

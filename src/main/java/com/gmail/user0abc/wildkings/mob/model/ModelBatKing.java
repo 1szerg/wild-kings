@@ -13,18 +13,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * @author Sergii Ivanov
  */
 @SideOnly(Side.CLIENT)
-public class ModelBatKing extends ModelBase
+public class ModelBatKing extends ModelKing
 {
     private final ModelRenderer batHead;
-    /** The body box of the bat model. */
     private final ModelRenderer batBody;
-    /** The inner right wing box of the bat model. */
     private final ModelRenderer batRightWing;
-    /** The inner left wing box of the bat model. */
     private final ModelRenderer batLeftWing;
-    /** The outer right wing box of the bat model. */
     private final ModelRenderer batOuterRightWing;
-    /** The outer left wing box of the bat model. */
     private final ModelRenderer batOuterLeftWing;
 
     public ModelBatKing()
@@ -61,22 +56,19 @@ public class ModelBatKing extends ModelBase
         this.batLeftWing.addChild(this.batOuterLeftWing);
     }
 
-    /**
-     * Sets the models various rotation angles then renders the model.
-     */
-    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
-    {
-        scale = 0.12f;
-        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
-        this.batHead.render(scale);
-        this.batBody.render(scale);
+    @Override
+    public float getHeightFix() {
+        return -12f;
     }
 
-    /**
-     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
-     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
-     * "far" arms and legs can swing at most.
-     */
+    @Override
+    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    {
+        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
+        this.batHead.render(scale * getSizeScale());
+        this.batBody.render(scale * getSizeScale());
+    }
+
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
         boolean hanging = false;

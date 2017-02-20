@@ -18,7 +18,7 @@ public class RenderPigKing extends RenderLiving<EntityPigKing> {
     private static final ResourceLocation texture = new ResourceLocation("textures/entity/pig/pig.png");
 
     public RenderPigKing(RenderManager renderManager) {
-        super(renderManager, new ModelPigKing(), 1.0f);
+        super(renderManager, new ModelPigKing(0.5f), 1.0f);
     }
 
     public static IRenderFactory<EntityPigKing> getRenderFactory() {

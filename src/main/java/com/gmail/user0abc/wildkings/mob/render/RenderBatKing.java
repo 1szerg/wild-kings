@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
  */
 public class RenderBatKing extends RenderLiving<EntityBatKing> {
 
-    private static final ResourceLocation texture = new ResourceLocation("entity/bat.png");
+    private static final ResourceLocation texture = new ResourceLocation("textures/entity/bat.png");
 
     public RenderBatKing(RenderManager renderManager) {
         super(renderManager, new ModelBatKing(), 1.0f);

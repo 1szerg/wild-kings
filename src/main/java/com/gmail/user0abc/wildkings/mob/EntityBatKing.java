@@ -20,7 +20,7 @@ public class EntityBatKing extends EntityMob {
 
     public EntityBatKing(World worldIn) {
         super(worldIn);
-        setSize(1f, 1f);
+        setSize(1f, 2f);
     }
 
     @Override

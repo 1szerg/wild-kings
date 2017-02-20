@@ -6,22 +6,31 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * @author Sergii Ivanov
  */
-public class ModelHorseKing extends ModelBase {
+@SideOnly(Side.CLIENT)
+public class ModelHorseKing extends ModelKing {
     private final ModelRenderer head;
     private final ModelRenderer upperMouth;
     private final ModelRenderer lowerMouth;
     private final ModelRenderer horseLeftEar;
     private final ModelRenderer horseRightEar;
-    /** The left ear box for the mule model. */
+    /**
+     * The left ear box for the mule model.
+     */
     private final ModelRenderer muleLeftEar;
-    /** The right ear box for the mule model. */
+    /**
+     * The right ear box for the mule model.
+     */
     private final ModelRenderer muleRightEar;
     private final ModelRenderer neck;
-    /** The box for the horse's ropes on its face. */
+    /**
+     * The box for the horse's ropes on its face.
+     */
     private final ModelRenderer horseFaceRopes;
     private final ModelRenderer mane;
     private final ModelRenderer body;
@@ -40,9 +49,13 @@ public class ModelHorseKing extends ModelBase {
     private final ModelRenderer frontRightLeg;
     private final ModelRenderer frontRightShin;
     private final ModelRenderer frontRightHoof;
-    /** The left chest box on the mule model. */
+    /**
+     * The left chest box on the mule model.
+     */
     private final ModelRenderer muleLeftChest;
-    /** The right chest box on the mule model. */
+    /**
+     * The right chest box on the mule model.
+     */
     private final ModelRenderer muleRightChest;
     private final ModelRenderer horseSaddleBottom;
     private final ModelRenderer horseSaddleFront;
@@ -51,15 +64,18 @@ public class ModelHorseKing extends ModelBase {
     private final ModelRenderer horseLeftSaddleMetal;
     private final ModelRenderer horseRightSaddleRope;
     private final ModelRenderer horseRightSaddleMetal;
-    /** The left metal connected to the horse's face ropes. */
+    /**
+     * The left metal connected to the horse's face ropes.
+     */
     private final ModelRenderer horseLeftFaceMetal;
-    /** The right metal connected to the horse's face ropes. */
+    /**
+     * The right metal connected to the horse's face ropes.
+     */
     private final ModelRenderer horseRightFaceMetal;
     private final ModelRenderer horseLeftRein;
     private final ModelRenderer horseRightRein;
 
-    public ModelHorseKing()
-    {
+    public ModelHorseKing() {
         this.textureWidth = 128;
         this.textureHeight = 128;
         this.body = new ModelRenderer(this, 0, 34);
@@ -152,11 +168,11 @@ public class ModelHorseKing extends ModelBase {
         this.muleLeftChest = new ModelRenderer(this, 0, 34);
         this.muleLeftChest.addBox(-3.0F, 0.0F, 0.0F, 8, 8, 3);
         this.muleLeftChest.setRotationPoint(-7.5F, 3.0F, 10.0F);
-        this.muleLeftChest.rotateAngleY = ((float)Math.PI / 2F);
+        this.muleLeftChest.rotateAngleY = ((float) Math.PI / 2F);
         this.muleRightChest = new ModelRenderer(this, 0, 47);
         this.muleRightChest.addBox(-3.0F, 0.0F, 0.0F, 8, 8, 3);
         this.muleRightChest.setRotationPoint(4.5F, 3.0F, 10.0F);
-        this.muleRightChest.rotateAngleY = ((float)Math.PI / 2F);
+        this.muleRightChest.rotateAngleY = ((float) Math.PI / 2F);
         this.horseSaddleBottom = new ModelRenderer(this, 80, 0);
         this.horseSaddleBottom.addBox(-5.0F, 0.0F, -3.0F, 10, 1, 8);
         this.horseSaddleBottom.setRotationPoint(0.0F, 2.0F, 2.0F);
@@ -202,132 +218,138 @@ public class ModelHorseKing extends ModelBase {
         this.horseFaceRopes.rotateAngleX = 0.5235988F;
     }
 
+    @Override
+    public float getHeightFix()
+    {
+        return -12f;
+    }
+
     /**
      * Sets the models various rotation angles then renders the model.
      */
-    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
-    {
-        scale = scale * 2;
+    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+        float renderScale = scale * getSizeScale();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0.0F, getHeightFix() * renderScale, 0.0F);
+
         //AbstractHorse abstracthorse = (AbstractHorse)entityIn;
-        float f = 0f;//abstracthorse.getGrassEatingAmount(0.0F);
-        boolean flag = false;//abstracthorse.isChild();
-        boolean flag1 = false;//!flag && abstracthorse.isHorseSaddled();
-        boolean flag2 = false;//abstracthorse instanceof AbstractChestHorse;
-        boolean flag3 = false;//!flag && flag2 && ((AbstractChestHorse)abstracthorse).hasChest();
-        float f1 = 1f;//abstracthorse.getHorseSize();
-        boolean flag4 = false;//abstracthorse.isBeingRidden();
+//        float f = 0f;//abstracthorse.getGrassEatingAmount(0.0F);
+//        boolean flag = false;//abstracthorse.isChild();
+//        boolean flag1 = false;//!flag && abstracthorse.isHorseSaddled();
+//        boolean flag2 = false;//abstracthorse instanceof AbstractChestHorse;
+//        boolean flag3 = false;//!flag && flag2 && ((AbstractChestHorse)abstracthorse).hasChest();
+//        float f1 = 1f;//abstracthorse.getHorseSize();
+//        boolean flag4 = false;//abstracthorse.isBeingRidden();
 
-        if (flag1)
-        {
-            this.horseFaceRopes.render(scale);
-            this.horseSaddleBottom.render(scale);
-            this.horseSaddleFront.render(scale);
-            this.horseSaddleBack.render(scale);
-            this.horseLeftSaddleRope.render(scale);
-            this.horseLeftSaddleMetal.render(scale);
-            this.horseRightSaddleRope.render(scale);
-            this.horseRightSaddleMetal.render(scale);
-            this.horseLeftFaceMetal.render(scale);
-            this.horseRightFaceMetal.render(scale);
+//        if (flag1)
+//        {
+//            this.horseFaceRopes.render(renderScale);
+//            this.horseSaddleBottom.render(renderScale);
+//            this.horseSaddleFront.render(renderScale);
+//            this.horseSaddleBack.render(renderScale);
+//            this.horseLeftSaddleRope.render(renderScale);
+//            this.horseLeftSaddleMetal.render(renderScale);
+//            this.horseRightSaddleRope.render(renderScale);
+//            this.horseRightSaddleMetal.render(renderScale);
+//            this.horseLeftFaceMetal.render(renderScale);
+//            this.horseRightFaceMetal.render(renderScale);
+//
+//            if (flag4)
+//            {
+//                this.horseLeftRein.render(renderScale);
+//                this.horseRightRein.render(renderScale);
+//            }
+//        }
 
-            if (flag4)
-            {
-                this.horseLeftRein.render(scale);
-                this.horseRightRein.render(scale);
-            }
-        }
+//        if (flag)
+//        {
+//            GlStateManager.pushMatrix();
+//            GlStateManager.renderScale(f1, 0.5F + f1 * 0.5F, f1);
+//            GlStateManager.translate(0.0F, 0.95F * (1.0F - f1), 0.0F);
+//        }
 
-        if (flag)
-        {
-            GlStateManager.pushMatrix();
-            GlStateManager.scale(f1, 0.5F + f1 * 0.5F, f1);
-            GlStateManager.translate(0.0F, 0.95F * (1.0F - f1), 0.0F);
-        }
+        this.backLeftLeg.render(renderScale);
+        this.backLeftShin.render(renderScale);
+        this.backLeftHoof.render(renderScale);
+        this.backRightLeg.render(renderScale);
+        this.backRightShin.render(renderScale);
+        this.backRightHoof.render(renderScale);
+        this.frontLeftLeg.render(renderScale);
+        this.frontLeftShin.render(renderScale);
+        this.frontLeftHoof.render(renderScale);
+        this.frontRightLeg.render(renderScale);
+        this.frontRightShin.render(renderScale);
+        this.frontRightHoof.render(renderScale);
 
-        this.backLeftLeg.render(scale);
-        this.backLeftShin.render(scale);
-        this.backLeftHoof.render(scale);
-        this.backRightLeg.render(scale);
-        this.backRightShin.render(scale);
-        this.backRightHoof.render(scale);
-        this.frontLeftLeg.render(scale);
-        this.frontLeftShin.render(scale);
-        this.frontLeftHoof.render(scale);
-        this.frontRightLeg.render(scale);
-        this.frontRightShin.render(scale);
-        this.frontRightHoof.render(scale);
+//        if (flag)
+//        {
+//            GlStateManager.popMatrix();
+//            GlStateManager.pushMatrix();
+//            GlStateManager.renderScale(f1, f1, f1);
+//            GlStateManager.translate(0.0F, 1.35F * (1.0F - f1), 0.0F);
+//        }
 
-        if (flag)
-        {
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            GlStateManager.scale(f1, f1, f1);
-            GlStateManager.translate(0.0F, 1.35F * (1.0F - f1), 0.0F);
-        }
+        this.body.render(renderScale);
+        this.tailBase.render(renderScale);
+        this.tailMiddle.render(renderScale);
+        this.tailTip.render(renderScale);
+        this.neck.render(renderScale);
+        this.mane.render(renderScale);
 
-        this.body.render(scale);
-        this.tailBase.render(scale);
-        this.tailMiddle.render(scale);
-        this.tailTip.render(scale);
-        this.neck.render(scale);
-        this.mane.render(scale);
+//        if (flag)
+//        {
+//            GlStateManager.popMatrix();
+//            GlStateManager.pushMatrix();
+//            float f2 = 0.5F + f1 * f1 * 0.5F;
+//            GlStateManager.renderScale(f2, f2, f2);
+//
+//            if (f <= 0.0F)
+//            {
+//                GlStateManager.translate(0.0F, 1.35F * (1.0F - f1), 0.0F);
+//            }
+//            else
+//            {
+//                GlStateManager.translate(0.0F, 0.9F * (1.0F - f1) * f + 1.35F * (1.0F - f1) * (1.0F - f), 0.15F * (1.0F - f1) * f);
+//            }
+//        }
 
-        if (flag)
-        {
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            float f2 = 0.5F + f1 * f1 * 0.5F;
-            GlStateManager.scale(f2, f2, f2);
+//        if (flag2)
+//        {
+//            this.muleLeftEar.render(renderScale);
+//            this.muleRightEar.render(renderScale);
+//        }
+//        else
+//        {
+        this.horseLeftEar.render(renderScale);
+        this.horseRightEar.render(renderScale);
+//        }
 
-            if (f <= 0.0F)
-            {
-                GlStateManager.translate(0.0F, 1.35F * (1.0F - f1), 0.0F);
-            }
-            else
-            {
-                GlStateManager.translate(0.0F, 0.9F * (1.0F - f1) * f + 1.35F * (1.0F - f1) * (1.0F - f), 0.15F * (1.0F - f1) * f);
-            }
-        }
+        this.head.render(renderScale);
 
-        if (flag2)
-        {
-            this.muleLeftEar.render(scale);
-            this.muleRightEar.render(scale);
-        }
-        else
-        {
-            this.horseLeftEar.render(scale);
-            this.horseRightEar.render(scale);
-        }
-
-        this.head.render(scale);
-
-        if (flag)
-        {
-            GlStateManager.popMatrix();
-        }
-
-        if (flag3)
-        {
-            this.muleLeftChest.render(scale);
-            this.muleRightChest.render(scale);
-        }
+//        if (flag)
+//        {
+//            GlStateManager.popMatrix();
+//        }
+//
+//        if (flag3)
+//        {
+//            this.muleLeftChest.render(renderScale);
+//            this.muleRightChest.render(renderScale);
+//        }
+        GlStateManager.popMatrix();
     }
 
     /**
      * Fixes and offsets a rotation in the ModelHorse class.
      */
-    private float updateHorseRotation(float p_110683_1_, float p_110683_2_, float p_110683_3_)
-    {
+    private float updateHorseRotation(float p_110683_1_, float p_110683_2_, float p_110683_3_) {
         float f;
 
-        for (f = p_110683_2_ - p_110683_1_; f < -180.0F; f += 360.0F)
-        {
+        for (f = p_110683_2_ - p_110683_1_; f < -180.0F; f += 360.0F) {
             ;
         }
 
-        while (f >= 180.0F)
-        {
+        while (f >= 180.0F) {
             f -= 360.0F;
         }
 
@@ -338,8 +360,7 @@ public class ModelHorseKing extends ModelBase {
      * Used for easily adding entity-dependent animations. The second and third float params here are the same second
      * and third as in the setRotationAngles method.
      */
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
-    {
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
         super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
         float f = this.updateHorseRotation(entitylivingbaseIn.prevRenderYawOffset, entitylivingbaseIn.renderYawOffset, partialTickTime);
         float f1 = this.updateHorseRotation(entitylivingbaseIn.prevRotationYawHead, entitylivingbaseIn.rotationYawHead, partialTickTime);
@@ -347,18 +368,15 @@ public class ModelHorseKing extends ModelBase {
         float f3 = f1 - f;
         float f4 = f2 * 0.017453292F;
 
-        if (f3 > 20.0F)
-        {
+        if (f3 > 20.0F) {
             f3 = 20.0F;
         }
 
-        if (f3 < -20.0F)
-        {
+        if (f3 < -20.0F) {
             f3 = -20.0F;
         }
 
-        if (limbSwingAmount > 0.2F)
-        {
+        if (limbSwingAmount > 0.2F) {
             f4 += MathHelper.cos(limbSwing * 0.4F) * 0.15F * limbSwingAmount;
         }
 
@@ -370,9 +388,10 @@ public class ModelHorseKing extends ModelBase {
         boolean flag = false;//abstracthorse.tailCounter != 0;
         boolean flag1 = false;//abstracthorse.isHorseSaddled();
         boolean flag2 = false;//abstracthorse.isBeingRidden();
-        float f9 = (float)entitylivingbaseIn.ticksExisted + partialTickTime;
-        float f10 = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI);
+        float f9 = (float) entitylivingbaseIn.ticksExisted + partialTickTime;
+        float f10 = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI);
         float f11 = f10 * 0.8F * limbSwingAmount;
+
         this.head.rotationPointY = 4.0F;
         this.head.rotationPointZ = -10.0F;
         this.tailBase.rotationPointY = 3.0F;
@@ -390,7 +409,7 @@ public class ModelHorseKing extends ModelBase {
         this.tailMiddle.rotationPointZ = f6 * 18.0F + f7 * this.tailMiddle.rotationPointZ;
         this.muleRightChest.rotationPointY = f6 * 5.5F + f7 * this.muleRightChest.rotationPointY;
         this.muleRightChest.rotationPointZ = f6 * 15.0F + f7 * this.muleRightChest.rotationPointZ;
-        this.body.rotateAngleX = f6 * -((float)Math.PI / 4F) + f7 * this.body.rotateAngleX;
+        this.body.rotateAngleX = f6 * -((float) Math.PI / 4F) + f7 * this.body.rotateAngleX;
         this.horseLeftEar.rotationPointY = this.head.rotationPointY;
         this.horseRightEar.rotationPointY = this.head.rotationPointY;
         this.muleLeftEar.rotationPointY = this.head.rotationPointY;
@@ -426,21 +445,21 @@ public class ModelHorseKing extends ModelBase {
         this.muleLeftChest.rotateAngleX = f11 / 5.0F;
         this.muleRightChest.rotateAngleX = -f11 / 5.0F;
         float f12 = 0.2617994F * f6;
-        float f13 = MathHelper.cos(f9 * 0.6F + (float)Math.PI);
+        float f13 = MathHelper.cos(f9 * 0.6F + (float) Math.PI);
         this.frontLeftLeg.rotationPointY = -2.0F * f6 + 9.0F * f7;
         this.frontLeftLeg.rotationPointZ = -2.0F * f6 + -8.0F * f7;
         this.frontRightLeg.rotationPointY = this.frontLeftLeg.rotationPointY;
         this.frontRightLeg.rotationPointZ = this.frontLeftLeg.rotationPointZ;
-        this.backLeftShin.rotationPointY = this.backLeftLeg.rotationPointY + MathHelper.sin(((float)Math.PI / 2F) + f12 + f7 * -f10 * 0.5F * limbSwingAmount) * 7.0F;
-        this.backLeftShin.rotationPointZ = this.backLeftLeg.rotationPointZ + MathHelper.cos(-((float)Math.PI / 2F) + f12 + f7 * -f10 * 0.5F * limbSwingAmount) * 7.0F;
-        this.backRightShin.rotationPointY = this.backRightLeg.rotationPointY + MathHelper.sin(((float)Math.PI / 2F) + f12 + f7 * f10 * 0.5F * limbSwingAmount) * 7.0F;
-        this.backRightShin.rotationPointZ = this.backRightLeg.rotationPointZ + MathHelper.cos(-((float)Math.PI / 2F) + f12 + f7 * f10 * 0.5F * limbSwingAmount) * 7.0F;
+        this.backLeftShin.rotationPointY = this.backLeftLeg.rotationPointY + MathHelper.sin(((float) Math.PI / 2F) + f12 + f7 * -f10 * 0.5F * limbSwingAmount) * 7.0F;
+        this.backLeftShin.rotationPointZ = this.backLeftLeg.rotationPointZ + MathHelper.cos(-((float) Math.PI / 2F) + f12 + f7 * -f10 * 0.5F * limbSwingAmount) * 7.0F;
+        this.backRightShin.rotationPointY = this.backRightLeg.rotationPointY + MathHelper.sin(((float) Math.PI / 2F) + f12 + f7 * f10 * 0.5F * limbSwingAmount) * 7.0F;
+        this.backRightShin.rotationPointZ = this.backRightLeg.rotationPointZ + MathHelper.cos(-((float) Math.PI / 2F) + f12 + f7 * f10 * 0.5F * limbSwingAmount) * 7.0F;
         float f14 = (-1.0471976F + f13) * f6 + f11 * f7;
         float f15 = (-1.0471976F - f13) * f6 + -f11 * f7;
-        this.frontLeftShin.rotationPointY = this.frontLeftLeg.rotationPointY + MathHelper.sin(((float)Math.PI / 2F) + f14) * 7.0F;
-        this.frontLeftShin.rotationPointZ = this.frontLeftLeg.rotationPointZ + MathHelper.cos(-((float)Math.PI / 2F) + f14) * 7.0F;
-        this.frontRightShin.rotationPointY = this.frontRightLeg.rotationPointY + MathHelper.sin(((float)Math.PI / 2F) + f15) * 7.0F;
-        this.frontRightShin.rotationPointZ = this.frontRightLeg.rotationPointZ + MathHelper.cos(-((float)Math.PI / 2F) + f15) * 7.0F;
+        this.frontLeftShin.rotationPointY = this.frontLeftLeg.rotationPointY + MathHelper.sin(((float) Math.PI / 2F) + f14) * 7.0F;
+        this.frontLeftShin.rotationPointZ = this.frontLeftLeg.rotationPointZ + MathHelper.cos(-((float) Math.PI / 2F) + f14) * 7.0F;
+        this.frontRightShin.rotationPointY = this.frontRightLeg.rotationPointY + MathHelper.sin(((float) Math.PI / 2F) + f15) * 7.0F;
+        this.frontRightShin.rotationPointZ = this.frontRightLeg.rotationPointZ + MathHelper.cos(-((float) Math.PI / 2F) + f15) * 7.0F;
         this.backLeftLeg.rotateAngleX = f12 + -f10 * 0.5F * limbSwingAmount * f7;
         this.backLeftShin.rotateAngleX = -0.08726646F * f6 + (-f10 * 0.5F * limbSwingAmount - Math.max(0.0F, f10 * 0.5F * limbSwingAmount)) * f7;
         this.backLeftHoof.rotateAngleX = this.backLeftShin.rotateAngleX;
@@ -448,10 +467,10 @@ public class ModelHorseKing extends ModelBase {
         this.backRightShin.rotateAngleX = -0.08726646F * f6 + (f10 * 0.5F * limbSwingAmount - Math.max(0.0F, -f10 * 0.5F * limbSwingAmount)) * f7;
         this.backRightHoof.rotateAngleX = this.backRightShin.rotateAngleX;
         this.frontLeftLeg.rotateAngleX = f14;
-        this.frontLeftShin.rotateAngleX = (this.frontLeftLeg.rotateAngleX + (float)Math.PI * Math.max(0.0F, 0.2F + f13 * 0.2F)) * f6 + (f11 + Math.max(0.0F, f10 * 0.5F * limbSwingAmount)) * f7;
+        this.frontLeftShin.rotateAngleX = (this.frontLeftLeg.rotateAngleX + (float) Math.PI * Math.max(0.0F, 0.2F + f13 * 0.2F)) * f6 + (f11 + Math.max(0.0F, f10 * 0.5F * limbSwingAmount)) * f7;
         this.frontLeftHoof.rotateAngleX = this.frontLeftShin.rotateAngleX;
         this.frontRightLeg.rotateAngleX = f15;
-        this.frontRightShin.rotateAngleX = (this.frontRightLeg.rotateAngleX + (float)Math.PI * Math.max(0.0F, 0.2F - f13 * 0.2F)) * f6 + (-f11 + Math.max(0.0F, -f10 * 0.5F * limbSwingAmount)) * f7;
+        this.frontRightShin.rotateAngleX = (this.frontRightLeg.rotateAngleX + (float) Math.PI * Math.max(0.0F, 0.2F - f13 * 0.2F)) * f6 + (-f11 + Math.max(0.0F, -f10 * 0.5F * limbSwingAmount)) * f7;
         this.frontRightHoof.rotateAngleX = this.frontRightShin.rotateAngleX;
         this.backLeftHoof.rotationPointY = this.backLeftShin.rotationPointY;
         this.backLeftHoof.rotationPointZ = this.backLeftShin.rotationPointZ;
@@ -462,8 +481,7 @@ public class ModelHorseKing extends ModelBase {
         this.frontRightHoof.rotationPointY = this.frontRightShin.rotationPointY;
         this.frontRightHoof.rotationPointZ = this.frontRightShin.rotationPointZ;
 
-        if (flag1)
-        {
+        if (flag1) {
             this.horseSaddleBottom.rotationPointY = f6 * 0.5F + f7 * 2.0F;
             this.horseSaddleBottom.rotationPointZ = f6 * 11.0F + f7 * 2.0F;
             this.horseSaddleFront.rotationPointY = this.horseSaddleBottom.rotationPointY;
@@ -504,8 +522,7 @@ public class ModelHorseKing extends ModelBase {
             this.horseRightFaceMetal.rotateAngleY = this.head.rotateAngleY;
             this.horseRightRein.rotateAngleY = this.head.rotateAngleY;
 
-            if (flag2)
-            {
+            if (flag2) {
                 this.horseLeftSaddleRope.rotateAngleX = -1.0471976F;
                 this.horseLeftSaddleMetal.rotateAngleX = -1.0471976F;
                 this.horseRightSaddleRope.rotateAngleX = -1.0471976F;
@@ -514,9 +531,7 @@ public class ModelHorseKing extends ModelBase {
                 this.horseLeftSaddleMetal.rotateAngleZ = 0.0F;
                 this.horseRightSaddleRope.rotateAngleZ = 0.0F;
                 this.horseRightSaddleMetal.rotateAngleZ = 0.0F;
-            }
-            else
-            {
+            } else {
                 this.horseLeftSaddleRope.rotateAngleX = f11 / 3.0F;
                 this.horseLeftSaddleMetal.rotateAngleX = f11 / 3.0F;
                 this.horseRightSaddleRope.rotateAngleX = f11 / 3.0F;
@@ -530,18 +545,14 @@ public class ModelHorseKing extends ModelBase {
 
         f12 = -1.3089969F + limbSwingAmount * 1.5F;
 
-        if (f12 > 0.0F)
-        {
+        if (f12 > 0.0F) {
             f12 = 0.0F;
         }
 
-        if (flag)
-        {
+        if (flag) {
             this.tailBase.rotateAngleY = MathHelper.cos(f9 * 0.7F);
             f12 = 0.0F;
-        }
-        else
-        {
+        } else {
             this.tailBase.rotateAngleY = 0.0F;
         }
 
@@ -554,4 +565,5 @@ public class ModelHorseKing extends ModelBase {
         this.tailBase.rotateAngleX = f12;
         this.tailMiddle.rotateAngleX = f12;
         this.tailTip.rotateAngleX = -0.2617994F + f12;
-    }}
+    }
+}

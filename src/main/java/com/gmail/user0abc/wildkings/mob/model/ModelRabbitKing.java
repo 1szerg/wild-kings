@@ -1,46 +1,33 @@
 package com.gmail.user0abc.wildkings.mob.model;
 
+import com.gmail.user0abc.wildkings.mob.EntityRabbitKing;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * @author Sergii Ivanov
  */
-public class ModelRabbitKing extends ModelBase {
+public class ModelRabbitKing extends ModelKing {
 
-    /** The Rabbit's Left Foot */
     private final ModelRenderer rabbitLeftFoot;
-    /** The Rabbit's Right Foot */
     private final ModelRenderer rabbitRightFoot;
-    /** The Rabbit's Left Thigh */
     private final ModelRenderer rabbitLeftThigh;
-    /** The Rabbit's Right Thigh */
     private final ModelRenderer rabbitRightThigh;
-    /** The Rabbit's Body */
     private final ModelRenderer rabbitBody;
-    /** The Rabbit's Left Arm */
     private final ModelRenderer rabbitLeftArm;
-    /** The Rabbit's Right Arm */
     private final ModelRenderer rabbitRightArm;
-    /** The Rabbit's Head */
     private final ModelRenderer rabbitHead;
-    /** The Rabbit's Right Ear */
     private final ModelRenderer rabbitRightEar;
-    /** The Rabbit's Left Ear */
     private final ModelRenderer rabbitLeftEar;
-    /** The Rabbit's Tail */
     private final ModelRenderer rabbitTail;
-    /** The Rabbit's Nose */
     private final ModelRenderer rabbitNose;
     private float jumpRotation;
 
-    public ModelRabbitKing()
-    {
+    public ModelRabbitKing() {
         this.setTextureOffset("head.main", 0, 0);
         this.setTextureOffset("head.nose", 0, 24);
         this.setTextureOffset("head.ear1", 0, 10);
@@ -107,74 +94,50 @@ public class ModelRabbitKing extends ModelBase {
         this.setRotationOffset(this.rabbitNose, 0.0F, 0.0F, 0.0F);
     }
 
-    private void setRotationOffset(ModelRenderer renderer, float x, float y, float z)
-    {
+    @Override
+    public float getHeightFix() {
+        return -12f;
+    }
+
+    @Override
+    public float getSizeScale() {
+        return 2;
+    }
+
+    private void setRotationOffset(ModelRenderer renderer, float x, float y, float z) {
         renderer.rotateAngleX = x;
         renderer.rotateAngleY = y;
         renderer.rotateAngleZ = z;
     }
 
-    /**
-     * Sets the models various rotation angles then renders the model.
-     */
-    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
-    {
-        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
+    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+        float renderScale = scale * getSizeScale();
+        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, renderScale*2, entityIn);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0.0F, getHeightFix() * renderScale, 0);
 
-        if (this.isChild)
-        {
-            float f = 1.5F;
-            GlStateManager.pushMatrix();
-            GlStateManager.scale(0.56666666F, 0.56666666F, 0.56666666F);
-            GlStateManager.translate(0.0F, 22.0F * scale, 2.0F * scale);
-            this.rabbitHead.render(scale);
-            this.rabbitLeftEar.render(scale);
-            this.rabbitRightEar.render(scale);
-            this.rabbitNose.render(scale);
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            GlStateManager.scale(0.4F, 0.4F, 0.4F);
-            GlStateManager.translate(0.0F, 36.0F * scale, 0.0F);
-            this.rabbitLeftFoot.render(scale);
-            this.rabbitRightFoot.render(scale);
-            this.rabbitLeftThigh.render(scale);
-            this.rabbitRightThigh.render(scale);
-            this.rabbitBody.render(scale);
-            this.rabbitLeftArm.render(scale);
-            this.rabbitRightArm.render(scale);
-            this.rabbitTail.render(scale);
-            GlStateManager.popMatrix();
-        }
-        else
-        {
-            GlStateManager.pushMatrix();
-            GlStateManager.scale(0.6F, 0.6F, 0.6F);
-            GlStateManager.translate(0.0F, 16.0F * scale, 0.0F);
-            this.rabbitLeftFoot.render(scale);
-            this.rabbitRightFoot.render(scale);
-            this.rabbitLeftThigh.render(scale);
-            this.rabbitRightThigh.render(scale);
-            this.rabbitBody.render(scale);
-            this.rabbitLeftArm.render(scale);
-            this.rabbitRightArm.render(scale);
-            this.rabbitHead.render(scale);
-            this.rabbitRightEar.render(scale);
-            this.rabbitLeftEar.render(scale);
-            this.rabbitTail.render(scale);
-            this.rabbitNose.render(scale);
-            GlStateManager.popMatrix();
-        }
+//        GlStateManager.pushMatrix();
+//        GlStateManager.renderScale(0.6F, 0.6F, 0.6F);
+//        GlStateManager.translate(0.0F, 16.0F * renderScale, 0.0F);
+
+        this.rabbitLeftFoot.render(renderScale);
+        this.rabbitRightFoot.render(renderScale);
+        this.rabbitLeftThigh.render(renderScale);
+        this.rabbitRightThigh.render(renderScale);
+        this.rabbitBody.render(renderScale);
+        this.rabbitLeftArm.render(renderScale);
+        this.rabbitRightArm.render(renderScale);
+        this.rabbitHead.render(renderScale);
+        this.rabbitRightEar.render(renderScale);
+        this.rabbitLeftEar.render(renderScale);
+        this.rabbitTail.render(renderScale);
+        this.rabbitNose.render(renderScale);
+        GlStateManager.popMatrix();
     }
 
-    /**
-     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
-     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
-     * "far" arms and legs can swing at most.
-     */
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
-    {
-        float f = ageInTicks - (float)entityIn.ticksExisted;
-        //EntityRabbit entityrabbit = (EntityRabbit)entityIn;
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+        float f = ageInTicks - (float) entityIn.ticksExisted;
+        EntityRabbitKing entityrabbit = (EntityRabbitKing) entityIn;
         this.rabbitNose.rotateAngleX = headPitch * 0.017453292F;
         this.rabbitHead.rotateAngleX = headPitch * 0.017453292F;
         this.rabbitRightEar.rotateAngleX = headPitch * 0.017453292F;
@@ -183,7 +146,7 @@ public class ModelRabbitKing extends ModelBase {
         this.rabbitHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.rabbitRightEar.rotateAngleY = this.rabbitNose.rotateAngleY - 0.2617994F;
         this.rabbitLeftEar.rotateAngleY = this.rabbitNose.rotateAngleY + 0.2617994F;
-        this.jumpRotation = MathHelper.sin(0f/*entityrabbit.setJumpCompletion(f)*/ * (float)Math.PI);
+        this.jumpRotation = MathHelper.sin(0f/*entityrabbit.setJumpCompletion(f)*/ * (float) Math.PI);
         this.rabbitLeftThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * 0.017453292F;
         this.rabbitRightThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * 0.017453292F;
         this.rabbitLeftFoot.rotateAngleX = this.jumpRotation * 50.0F * 0.017453292F;
@@ -192,12 +155,8 @@ public class ModelRabbitKing extends ModelBase {
         this.rabbitRightArm.rotateAngleX = (this.jumpRotation * -40.0F - 11.0F) * 0.017453292F;
     }
 
-    /**
-     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
-     * and third as in the setRotationAngles method.
-     */
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
-    {
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
         super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
-        this.jumpRotation = MathHelper.sin(0f/*((EntityRabbit)entitylivingbaseIn).setJumpCompletion(partialTickTime)*/ * (float)Math.PI);
-    }}
+        this.jumpRotation = MathHelper.sin(0f/*((EntityRabbit)entitylivingbaseIn).setJumpCompletion(partialTickTime)*/ * (float) Math.PI);
+    }
+}

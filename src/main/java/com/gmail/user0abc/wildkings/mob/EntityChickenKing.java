@@ -4,6 +4,9 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 /**
@@ -13,10 +16,16 @@ public class EntityChickenKing extends EntityMob {
     public static final String NAME = "chicken_king";
     public static final int EGG_PRIM = 0xA1A1A1;
     public static final int EGG_SEC = 0xFF0000;
+    public float oFlapSpeed;
+    public float oFlap;
+    public float wingRotation;
+    public float destPos;
+    private float wingRotDelta;
+
 
     public EntityChickenKing(World worldIn) {
         super(worldIn);
-        setSize(0.75f, 0.75f);
+        setSize(1.0f, 1.75f);
     }
 
     @Override
@@ -45,5 +54,32 @@ public class EntityChickenKing extends EntityMob {
         getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40f);
     }
 
+    public void fall(float distance, float damageMultiplier)
+    {
+    }
 
+    @Override
+    public void onLivingUpdate() {
+        super.onLivingUpdate();
+        this.wingRotation = 0f;
+        this.oFlap = this.wingRotation;
+        this.oFlapSpeed = this.destPos;
+        this.destPos = (float)((double)this.destPos + (double)(this.onGround ? -1 : 4) * 0.3D);
+        this.destPos = MathHelper.clamp(this.destPos, 0.0F, 1.0F);
+
+        if (!this.onGround && this.wingRotDelta < 1.0F)
+        {
+            this.wingRotDelta = 1.0F;
+        }
+
+        this.wingRotDelta = (float)((double)this.wingRotDelta * 0.9D);
+
+        if (!this.onGround && this.motionY < 0.0D)
+        {
+            this.motionY *= 0.6D;
+        }
+
+        this.wingRotation += this.wingRotDelta * 2.0F;
+
+    }
 }
