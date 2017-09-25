@@ -1,18 +1,25 @@
 package com.gmail.user0abc.wildkings.block;
 
 import com.gmail.user0abc.wildkings.WildKingsMod;
+import com.gmail.user0abc.wildkings.tileentity.TileEntityPlanter;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -23,7 +30,9 @@ import java.util.Random;
 /**
  * @author Sergii Ivanov
  */
-public class BlockPlanter extends BlockDirectional {
+public class BlockPlanter extends BlockContainer
+{
+    public static final PropertyDirection FACING = BlockDirectional.FACING;
     public static final String NAME = "planter_block";
     public static final String MODEL_NAME = "planter_block";
     public static final PropertyBool ACTIVE = PropertyBool.create("active");
@@ -39,6 +48,81 @@ public class BlockPlanter extends BlockDirectional {
         setSoundType(SoundType.STONE);
     }
 
+    public int tickRate(World worldIn)
+    {
+        return 4;
+    }
+
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    {
+        super.onBlockAdded(worldIn, pos, state);
+        this.setDefaultDirection(worldIn, pos, state);
+    }
+
+    private void setDefaultDirection(World worldIn, BlockPos pos, IBlockState state)
+    {
+        if (!worldIn.isRemote)
+        {
+            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+            boolean flag = worldIn.getBlockState(pos.north()).isFullBlock();
+            boolean flag1 = worldIn.getBlockState(pos.south()).isFullBlock();
+
+            if (enumfacing == EnumFacing.NORTH && flag && !flag1)
+            {
+                enumfacing = EnumFacing.SOUTH;
+            }
+            else if (enumfacing == EnumFacing.SOUTH && flag1 && !flag)
+            {
+                enumfacing = EnumFacing.NORTH;
+            }
+            else
+            {
+                boolean flag2 = worldIn.getBlockState(pos.west()).isFullBlock();
+                boolean flag3 = worldIn.getBlockState(pos.east()).isFullBlock();
+
+                if (enumfacing == EnumFacing.WEST && flag2 && !flag3)
+                {
+                    enumfacing = EnumFacing.EAST;
+                }
+                else if (enumfacing == EnumFacing.EAST && flag3 && !flag2)
+                {
+                    enumfacing = EnumFacing.WEST;
+                }
+            }
+
+            worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing).withProperty(ACTIVE, Boolean.valueOf(false)), 2);
+        }
+    }
+
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if (worldIn.isRemote)
+        {
+            return true;
+        }
+        else
+        {
+            TileEntity tileentity = worldIn.getTileEntity(pos);
+
+            if (tileentity instanceof TileEntityPlanter)
+            {
+                playerIn.displayGUIChest((TileEntityPlanter)tileentity);
+
+                if (tileentity instanceof TileEntityPlanter)
+                {
+                    playerIn.addStat(StatList.DROPPER_INSPECTED);
+                }
+                else
+                {
+                    playerIn.addStat(StatList.DISPENSER_INSPECTED);
+                }
+            }
+
+            return true;
+        }
+    }
+
+
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
         if (!state.getValue(ACTIVE) && worldIn.isBlockPowered(pos)) {
@@ -49,19 +133,12 @@ public class BlockPlanter extends BlockDirectional {
         }
     }
 
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[]{FACING, ACTIVE});
-    }
-
-
     private void doPlant(World worldIn, BlockPos pos, IBlockState state) {
 
     }
 
-    @Override
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-        super.onBlockAdded(worldIn, pos, state);
-        setDirection(worldIn, pos, state);
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{FACING, ACTIVE});
     }
 
     private void setDirection(World worldIn, BlockPos pos, IBlockState state) {
@@ -114,4 +191,10 @@ public class BlockPlanter extends BlockDirectional {
         return i;
     }
 
+    @Nullable
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityPlanter();
+    }
 }
