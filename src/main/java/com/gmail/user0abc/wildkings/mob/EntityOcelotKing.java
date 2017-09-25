@@ -14,7 +14,7 @@ public class EntityOcelotKing extends EntityMob {
 
     public EntityOcelotKing(World worldIn) {
         super(worldIn);
-        setSize(0.75f, 0.75f);
+        setSize(1.25f, 1.25f);
     }
 
     @Override

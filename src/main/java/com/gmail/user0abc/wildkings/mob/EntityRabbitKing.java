@@ -14,7 +14,7 @@ public class EntityRabbitKing extends EntityMob {
 
     public EntityRabbitKing(World worldIn) {
         super(worldIn);
-        setSize(0.75f, 0.75f);
+        setSize(1.0f, 1.0f);
     }
 
     @Override

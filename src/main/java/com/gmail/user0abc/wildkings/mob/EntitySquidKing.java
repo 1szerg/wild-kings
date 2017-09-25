@@ -20,7 +20,7 @@ public class EntitySquidKing extends EntityMob implements IRangedAttackMob {
 
     public EntitySquidKing(World worldIn) {
         super(worldIn);
-        setSize(0.75f, 0.75f);
+        setSize(1.0f, 1.75f);
     }
 
     @Override

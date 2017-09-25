@@ -14,7 +14,7 @@ public class EntityLlamaKing extends EntityMob {
 
     public EntityLlamaKing(World worldIn) {
         super(worldIn);
-        setSize(0.75f, 0.75f);
+        setSize(1.25f, 1.25f);
     }
 
     @Override
