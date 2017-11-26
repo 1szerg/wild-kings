@@ -1,12 +1,15 @@
 package com.gmail.user0abc.wildkings;
 
+import com.gmail.user0abc.wildkings.action.WildKingsEvents;
 import com.gmail.user0abc.wildkings.block.WildKingsBlocks;
 import com.gmail.user0abc.wildkings.item.WildKingsItems;
+import com.gmail.user0abc.wildkings.misc.Utils;
 import com.gmail.user0abc.wildkings.misc.WildKingsCrafting;
 import com.gmail.user0abc.wildkings.mob.WildKingsMobs;
 import com.gmail.user0abc.wildkings.proxy.CommonProxy;
 import com.gmail.user0abc.wildkings.tab.WildKingsTab;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -27,6 +30,7 @@ public class WildKingsMod {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        Utils.log("WildKingsMod: Pre-init");
         wkCreativeTab = new WildKingsTab(CreativeTabs.getNextID(), "wildkings_tab");
         WildKingsItems.preInit();
         WildKingsBlocks.preInit();
@@ -37,7 +41,9 @@ public class WildKingsMod {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
+        Utils.log("WildKingsMod: Init");
         proxy.init(event);
+        MinecraftForge.EVENT_BUS.register(new WildKingsEvents());
     }
 
 }

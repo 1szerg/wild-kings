@@ -1,8 +1,5 @@
 package com.gmail.user0abc.wildkings.mob.model;
 
-import net.minecraft.client.model.ModelPig;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

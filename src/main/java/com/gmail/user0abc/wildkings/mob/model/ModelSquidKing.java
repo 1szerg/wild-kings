@@ -1,7 +1,6 @@
 package com.gmail.user0abc.wildkings.mob.model;
 
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.model.ModelSquid;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 

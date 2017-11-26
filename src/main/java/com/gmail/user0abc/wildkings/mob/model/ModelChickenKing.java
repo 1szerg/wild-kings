@@ -1,8 +1,6 @@
 package com.gmail.user0abc.wildkings.mob.model;
 
 import com.gmail.user0abc.wildkings.mob.EntityChickenKing;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;

@@ -1,6 +1,5 @@
 package com.gmail.user0abc.wildkings.mob.model;
 
-import net.minecraft.client.model.ModelQuadruped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

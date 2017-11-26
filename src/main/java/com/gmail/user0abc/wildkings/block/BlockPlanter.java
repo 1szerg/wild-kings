@@ -30,13 +30,15 @@ import java.util.Random;
 /**
  * @author Sergii Ivanov
  */
-public class BlockPlanter extends BlockContainer
-{
+public class BlockPlanter extends BlockContainer {
     public static final PropertyDirection FACING = BlockDirectional.FACING;
     public static final String NAME = "planter_block";
     public static final String MODEL_NAME = "planter_block";
     public static final PropertyBool ACTIVE = PropertyBool.create("active");
 
+    public BlockPlanter(){
+        this(false);
+    }
 
     public BlockPlanter(boolean active) {
         super(Material.ROCK);
@@ -48,44 +50,32 @@ public class BlockPlanter extends BlockContainer
         setSoundType(SoundType.STONE);
     }
 
-    public int tickRate(World worldIn)
-    {
+    public int tickRate(World worldIn) {
         return 4;
     }
 
-    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
-    {
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
         super.onBlockAdded(worldIn, pos, state);
         this.setDefaultDirection(worldIn, pos, state);
     }
 
-    private void setDefaultDirection(World worldIn, BlockPos pos, IBlockState state)
-    {
-        if (!worldIn.isRemote)
-        {
-            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+    private void setDefaultDirection(World worldIn, BlockPos pos, IBlockState state) {
+        if (!worldIn.isRemote) {
+            EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
             boolean flag = worldIn.getBlockState(pos.north()).isFullBlock();
             boolean flag1 = worldIn.getBlockState(pos.south()).isFullBlock();
 
-            if (enumfacing == EnumFacing.NORTH && flag && !flag1)
-            {
+            if (enumfacing == EnumFacing.NORTH && flag && !flag1) {
                 enumfacing = EnumFacing.SOUTH;
-            }
-            else if (enumfacing == EnumFacing.SOUTH && flag1 && !flag)
-            {
+            } else if (enumfacing == EnumFacing.SOUTH && flag1 && !flag) {
                 enumfacing = EnumFacing.NORTH;
-            }
-            else
-            {
+            } else {
                 boolean flag2 = worldIn.getBlockState(pos.west()).isFullBlock();
                 boolean flag3 = worldIn.getBlockState(pos.east()).isFullBlock();
 
-                if (enumfacing == EnumFacing.WEST && flag2 && !flag3)
-                {
+                if (enumfacing == EnumFacing.WEST && flag2 && !flag3) {
                     enumfacing = EnumFacing.EAST;
-                }
-                else if (enumfacing == EnumFacing.EAST && flag3 && !flag2)
-                {
+                } else if (enumfacing == EnumFacing.EAST && flag3 && !flag2) {
                     enumfacing = EnumFacing.WEST;
                 }
             }
@@ -94,26 +84,18 @@ public class BlockPlanter extends BlockContainer
         }
     }
 
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (worldIn.isRemote) {
             return true;
-        }
-        else
-        {
+        } else {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityPlanter)
-            {
-                playerIn.displayGUIChest((TileEntityPlanter)tileentity);
+            if (tileentity instanceof TileEntityPlanter) {
+                playerIn.displayGUIChest((TileEntityPlanter) tileentity);
 
-                if (tileentity instanceof TileEntityPlanter)
-                {
+                if (tileentity instanceof TileEntityPlanter) {
                     playerIn.addStat(StatList.DROPPER_INSPECTED);
-                }
-                else
-                {
+                } else {
                     playerIn.addStat(StatList.DISPENSER_INSPECTED);
                 }
             }
@@ -193,8 +175,7 @@ public class BlockPlanter extends BlockContainer
 
     @Nullable
     @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityPlanter();
     }
 }

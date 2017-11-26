@@ -32,7 +32,6 @@ public class Utils {
         mob.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40f);
     }
 
-
     public static void log(String s) {
         System.out.println(">>> "+s);
     }

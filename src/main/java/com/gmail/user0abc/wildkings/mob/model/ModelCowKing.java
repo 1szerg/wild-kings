@@ -1,10 +1,6 @@
 package com.gmail.user0abc.wildkings.mob.model;
 
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -38,7 +34,7 @@ public class ModelCowKing extends ModelQuadrupedKing {
 
     @Override
     public float getHeightFix() {
-        return -10f;
+        return -12f;
     }
 
 }

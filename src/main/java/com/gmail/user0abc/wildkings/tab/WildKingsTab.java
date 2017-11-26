@@ -2,7 +2,6 @@ package com.gmail.user0abc.wildkings.tab;
 
 import com.gmail.user0abc.wildkings.item.WildKingsItems;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 /**
