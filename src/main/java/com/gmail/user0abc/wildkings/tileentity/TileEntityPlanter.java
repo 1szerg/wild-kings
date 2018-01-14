@@ -1,5 +1,6 @@
 package com.gmail.user0abc.wildkings.tileentity;
 
+import com.gmail.user0abc.wildkings.inventory.ContainerPlanter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -23,13 +24,13 @@ public class TileEntityPlanter extends TileEntityLockableLoot
     @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
-        return null;//todo
+        return new ContainerPlanter();
     }
 
     @Override
     public String getGuiID()
     {
-        return "minecraft:dispenser";
+        return "wildkings:planter";
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.gmail.user0abc.wildkings.block;
 
 import com.gmail.user0abc.wildkings.WildKingsMod;
 import com.gmail.user0abc.wildkings.misc.Utils;
+import com.gmail.user0abc.wildkings.tileentity.TileEntityPlanter;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -44,6 +45,7 @@ public class WildKingsBlocks {
         registerBlock(feeder, BlockFeeder.NAME);
         registerBlock(fisher, BlockFisher.NAME);
         registerBlock(planter, BlockPlanter.NAME);
+        GameRegistry.registerTileEntity(TileEntityPlanter.class, BlockPlanter.NAME);
     }
 
     private static void registerBlock(Block block, String name) {

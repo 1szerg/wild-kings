@@ -15,7 +15,7 @@ import javax.annotation.Nullable;
  */
 public class RenderChickenKing extends RenderLiving<EntityChickenKing> {
 
-    private static final ResourceLocation texture = new ResourceLocation("textures/entity/chicken.png");
+    private static final ResourceLocation texture = new ResourceLocation("wildkings","textures/entity/chicken/chicken_king.png");
 
     public RenderChickenKing(RenderManager renderManager) {
         super(renderManager, new ModelChickenKing(), 1.0f);
